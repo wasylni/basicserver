@@ -40,7 +40,7 @@ public class BasicServer {
     }
 
     public static void main(String[] args) throws Exception {
-        com.wasiluk.basicserver.BasicServer app = new com.wasiluk.basicserver.BasicServer(args==null|| args.length==0?null:args[0]);
+        com.wasiluk.basicserver.BasicServer app = new com.wasiluk.basicserver.BasicServer(args == null || args.length == 0 ? null : args[0]);
         System.out.println("\r\nRunning Server: " +
                 "Host=" + app.getSocketAddress().getHostAddress() +
                 " Port=" + app.getPort());
