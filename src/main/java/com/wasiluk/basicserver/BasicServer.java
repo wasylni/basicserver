@@ -9,15 +9,15 @@ import java.net.Socket;
 public class BasicServer {
 
     private ServerSocket server;
+    private static final int SERVER_PORT = 8080;
 
-    private BasicServer(String ipAddress) throws Exception {
-        if (ipAddress == null || ipAddress.isEmpty()) {
-            this.server = new ServerSocket(0, 1, InetAddress.getLocalHost());
+    private BasicServer(String[] serverArgs) throws Exception {
+        if (serverArgs.length==0) {
+            this.server = new ServerSocket(SERVER_PORT);
         } else {
-            this.server = new ServerSocket(0, 1, InetAddress.getByName(ipAddress));
+            this.server = new ServerSocket(Integer.valueOf(serverArgs[0]));
         }
     }
-
     private void listen() throws Exception {
         String data;
         Socket client = this.server.accept();
@@ -40,7 +40,7 @@ public class BasicServer {
     }
 
     public static void main(String[] args) throws Exception {
-        com.wasiluk.basicserver.BasicServer app = new com.wasiluk.basicserver.BasicServer(args == null || args.length == 0 ? null : args[0]);
+        com.wasiluk.basicserver.BasicServer app = new com.wasiluk.basicserver.BasicServer(args);
         System.out.println("\r\nRunning Server: " +
                 "Host=" + app.getSocketAddress().getHostAddress() +
                 " Port=" + app.getPort());
